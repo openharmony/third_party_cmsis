@@ -39,8 +39,6 @@ CMSIS_DSP_SOURCE = [
   "//third_party/cmsis/CMSIS/DSP/Source/SupportFunctions/SupportFunctions.c",
   "//third_party/cmsis/CMSIS/DSP/Source/SVMFunctions/SVMFunctions.c",
   "//third_party/cmsis/CMSIS/DSP/Source/TransformFunctions/TransformFunctions.c",
-
-  #  "//third_party/cmsis/CMSIS/DSP/Source/FilteringFunctions/FilteringFunctions.c",
 ]
 
 CMSIS_INCLUDE_DIRS = [

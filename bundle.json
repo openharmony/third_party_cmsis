@@ -14,14 +14,16 @@
         "en": ""
     },
     "component": {
-        "name": "thirdparty_cmsis",
+        "name": "cmsis",
         "subsystem": "",
         "syscap": [],
         "features": [],
-        "adapted_system_type": [],
-        "rom": "",
-        "ram": "",
-        "deps": {
+        "adapted_system_type": [
+            "mini"
+        ],
+        "rom": "7KB",
+        "ram": "14KB",
+        "external_deps": {
             "components": [],
             "third_party": []
         },

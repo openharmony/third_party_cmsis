@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2023 Arm Limited.
+ * Copyright (c) 2009-2024 Arm Limited.
  * Copyright (c) 2018-2022 Arm China.
  * All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
@@ -582,6 +582,7 @@ typedef struct
 typedef struct
 {
   __IOM uint32_t CACR;                   /*!< Offset: 0x0 (R/W)  L1 Cache Control Register */
+        uint32_t RESERVED0[3U];
   __IOM uint32_t ITCMCR;                 /*!< Offset: 0x10 (R/W)  Instruction Tightly-Coupled Memory Control Register */
   __IOM uint32_t DTCMCR;                 /*!< Offset: 0x14 (R/W)  Data Tightly-Coupled Memory Control Registers */
 } EMSS_Type;
@@ -653,8 +654,8 @@ typedef struct
 #define SCB_AIRCR_VECTKEYSTAT_Pos          16U                                            /*!< SCB AIRCR: VECTKEYSTAT Position */
 #define SCB_AIRCR_VECTKEYSTAT_Msk          (0xFFFFUL << SCB_AIRCR_VECTKEYSTAT_Pos)        /*!< SCB AIRCR: VECTKEYSTAT Mask */
 
-#define SCB_AIRCR_ENDIANESS_Pos            15U                                            /*!< SCB AIRCR: ENDIANESS Position */
-#define SCB_AIRCR_ENDIANESS_Msk            (1UL << SCB_AIRCR_ENDIANESS_Pos)               /*!< SCB AIRCR: ENDIANESS Mask */
+#define SCB_AIRCR_ENDIANNESS_Pos           15U                                            /*!< SCB AIRCR: ENDIANNESS Position */
+#define SCB_AIRCR_ENDIANNESS_Msk           (1UL << SCB_AIRCR_ENDIANNESS_Pos)              /*!< SCB AIRCR: ENDIANNESS Mask */
 
 #define SCB_AIRCR_PRIS_Pos                 14U                                            /*!< SCB AIRCR: PRIS Position */
 #define SCB_AIRCR_PRIS_Msk                 (1UL << SCB_AIRCR_PRIS_Pos)                    /*!< SCB AIRCR: PRIS Mask */
@@ -1353,6 +1354,62 @@ typedef struct
 #define DWT_FUNCTION_MATCH_Msk             (0xFUL /*<< DWT_FUNCTION_MATCH_Pos*/)       /*!< DWT FUNCTION: MATCH Mask */
 
 /*@}*/ /* end of group CMSIS_DWT */
+
+/**
+  \ingroup  CMSIS_core_register
+  \defgroup CMSIS_BPU     Breakpoint Unit (BPU)
+  \brief    Type definitions for the Breakpoint Unit (BPU)
+  @{
+ */
+
+/**
+  \brief  Structure type to access the Breakpoint Unit Register (BPU).
+ */
+typedef struct
+{
+  __IOM uint32_t CTRL;           /*!< Offset: 0x000 (R/W)  Control Register */
+        uint32_t RESERVED1;
+  __IOM uint32_t COMP0;          /*!< Offset: 0x008 (R/W)  Comparator Register 0 */
+  __IOM uint32_t COMP1;          /*!< Offset: 0x00C (R/W)  Comparator Register 1 */
+  __IOM uint32_t COMP2;          /*!< Offset: 0x010 (R/W)  Comparator Register 2 */
+  __IOM uint32_t COMP3;          /*!< Offset: 0x014 (R/W)  Comparator Register 3 */
+  __IOM uint32_t COMP4;          /*!< Offset: 0x018 (R/W)  Comparator Register 0 */
+  __IOM uint32_t COMP5;          /*!< Offset: 0x01C (R/W)  Comparator Register 0 */
+  __IOM uint32_t COMP6;          /*!< Offset: 0x020 (R/W)  Comparator Register 0 */
+  __IOM uint32_t COMP7;          /*!< Offset: 0x024 (R/W)  Comparator Register 0 */
+        uint32_t RESERVED2[997];
+  __IM  uint32_t DEVARCH;        /*!< Offset: 0xFBC (R/ )  Device Type Register */
+        uint32_t RESERVED3[3];
+  __IM  uint32_t DEVTYPE;        /*!< Offset: 0xFCC (R/ )  Device Architecture Register */
+} BPU_Type;
+
+/** \brief BPU Control Register Definitions */
+#define BPU_CTRL_REV_Pos               28U                                     /*!< BPU CTRL: REV Position */
+#define BPU_CTRL_REV_Msk               (0xFUL << BPU_CTRL_REV_Pos)             /*!< BPU CTRL: REV Mask */
+
+#define BPU_CTRL_NUM_CODE_H_Pos        12U                                     /*!< BPU CTRL: NUM_CODE_H Position */
+#define BPU_CTRL_NUM_CODE_H_Msk        (0x7UL << BPU_CTRL_NUM_CODE_H_Pos)      /*!< BPU CTRL: NUM_CODE_H Mask */
+
+#define BPU_CTRL_NUM_LIT_Pos           8U                                      /*!< BPU CTRL: NUM_LIT Position */
+#define BPU_CTRL_NUM_LIT_Msk           (0xFUL << BPU_CTRL_NUM_LIT_Pos)         /*!< BPU CTRL: NUM_LIT Mask */
+
+#define BPU_CTRL_NUM_CODE_L_Pos        4U                                      /*!< BPU CTRL: NUM_CODE_L Position */
+#define BPU_CTRL_NUM_CODE_L_Msk        (0xFUL << BPU_CTRL_NUM_CODE_L_Pos)      /*!< BPU CTRL: NUM_CODE_L Mask */
+
+#define BPU_CTRL_KEY_Pos               1U                                      /*!< BPU CTRL: KEY Position */
+#define BPU_CTRL_KEY_Msk               (0x1UL << BPU_CTRL_KEY_Pos)             /*!< BPU CTRL: KEY Mask */
+
+#define BPU_CTRL_ENABLE_Pos            0U                                      /*!< BPU CTRL: ENABLE Position */
+#define BPU_CTRL_ENABLE_Msk            (0x1UL << BPU_CTRL_ENABLE_Pos)          /*!< BPU CTRL: ENABLE Mask */
+
+/** \brief BPU Comparator Register Definitions */
+#define BPU_COMP_BPADDR_Pos            1U                                      /*!< BPU COMP: BPADDR Position */
+#define BPU_COMP_BPADDR_Msk            (0x7FFFFFFFUL << BPU_COMP_BPADDR_Pos)   /*!< BPU COMP: BPADDR Mask */
+
+#define BPU_COMP_BE_Pos                0U                                      /*!< BPU COMP: BE Position */
+#define BPU_COMP_BE_Msk                (0x1UL << BPU_COMP_BE_Pos)              /*!< BPU COMP: BE Mask */
+
+/*@}*/ /* end of group CMSIS_BPU */
 
 
 /**
@@ -2111,7 +2168,7 @@ typedef struct
 #define _VAL2FLD(field, value)    (((uint32_t)(value) << field ## _Pos) & field ## _Msk)
 
 /**
-  \brief     Mask and shift a register value to extract a bit filed value.
+  \brief     Mask and shift a register value to extract a bit field value.
   \param[in] field  Name of the register bit field.
   \param[in] value  Value of register. This parameter is interpreted as an uint32_t type.
   \return           Masked and shifted bit field value.
@@ -2132,6 +2189,7 @@ typedef struct
   #define SCS_BASE            (0xE000E000UL)                             /*!< System Control Space Base Address */
   #define ITM_BASE            (0xE0000000UL)                             /*!< ITM Base Address */
   #define DWT_BASE            (0xE0001000UL)                             /*!< DWT Base Address */
+  #define BPU_BASE            (0xE0002000UL)                             /*!< BPU Base Address */
   #define TPIU_BASE           (0xE0040000UL)                             /*!< TPIU Base Address */
   #define DCB_BASE            (0xE000EDF0UL)                             /*!< DCB Base Address */
   #define DIB_BASE            (0xE000EFB0UL)                             /*!< DIB Base Address */
@@ -2147,6 +2205,7 @@ typedef struct
   #define NVIC                ((NVIC_Type      *)     NVIC_BASE        ) /*!< NVIC configuration struct */
   #define ITM                 ((ITM_Type       *)     ITM_BASE         ) /*!< ITM configuration struct */
   #define DWT                 ((DWT_Type       *)     DWT_BASE         ) /*!< DWT configuration struct */
+  #define BPU                 ((BPU_Type       *)     BPU_BASE         ) /*!< BPU configuration struct */
   #define TPIU                ((TPIU_Type      *)     TPIU_BASE        ) /*!< TPIU configuration struct */
   #define DCB                 ((DCB_Type       *)     DCB_BASE         ) /*!< DCB configuration struct */
   #define DIB                 ((DIB_Type       *)     DIB_BASE         ) /*!< DIB configuration struct */
@@ -2193,11 +2252,17 @@ typedef struct
 
 
 /**
-  \ingroup    CMSIS_core_register
-  \defgroup   CMSIS_register_aliases     Backwards Compatibility Aliases
-  \brief      Register alias definitions for backwards compatibility.
+  \defgroup   CMSIS_deprecated_aliases     Backwards Compatibility Aliases
+  \brief      Alias definitions present for backwards compatibility for deprecated symbols.
   @{
  */
+
+#ifndef CMSIS_DISABLE_DEPRECATED
+
+#define SCB_AIRCR_ENDIANESS_Pos            SCB_AIRCR_ENDIANNESS_Pos
+#define SCB_AIRCR_ENDIANESS_Msk            SCB_AIRCR_ENDIANNESS_Msk
+
+#endif // CMSIS_DISABLE_DEPRECATED
 
 /*@} */
 
@@ -2924,6 +2989,7 @@ __STATIC_INLINE uint32_t SCB_GetFPUType(void)
     return 0U;           /* No FPU */
   }
 }
+
 
 /*@} end of CMSIS_Core_FpuFunctions */
 
